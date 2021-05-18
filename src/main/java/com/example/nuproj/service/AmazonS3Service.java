@@ -7,24 +7,15 @@ import com.amazonaws.services.s3.AmazonS3ClientBuilder;
 import com.amazonaws.services.s3.model.ObjectListing;
 import com.amazonaws.services.s3.model.S3ObjectInputStream;
 import com.amazonaws.services.s3.model.S3ObjectSummary;
-import org.apache.hadoop.fs.Path;
-import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
-import org.springframework.context.annotation.Configuration;
 import org.springframework.stereotype.Service;
-import parquet.hadoop.api.WriteSupport;
-import parquet.schema.MessageType;
-import parquet.schema.MessageTypeParser;
 
-import java.awt.*;
 import java.io.*;
-import java.nio.charset.Charset;
 import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.nio.file.StandardCopyOption;
 import java.util.Arrays;
 import java.util.List;
-import java.util.regex.Pattern;
 import java.util.stream.Collectors;
 import java.util.zip.ZipEntry;
 import java.util.zip.ZipInputStream;
@@ -40,7 +31,7 @@ public class AmazonS3Service {
     }
 
     private void getS3Objects() throws IOException {
-String key ="";
+        String key = "";
         AmazonS3 s3client = retrieveS3Client();
 
         ObjectListing objectListing = s3client.listObjects("candidate-33-s3-bucket");
@@ -148,7 +139,7 @@ String key ="";
     }
 
     private void uploadToS3(String fileName) {
-        retrieveS3Client().putObject("candidate-33-s3-bucket", WORKSPACE_PATH, WORKSPACE_PATH+fileName);
+        retrieveS3Client().putObject("candidate-33-s3-bucket", WORKSPACE_PATH, WORKSPACE_PATH + fileName);
     }
 
     private AmazonS3 retrieveS3Client() {
