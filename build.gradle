@@ -1,0 +1,35 @@
+plugins {
+	id 'org.springframework.boot' version '2.4.5'
+	id 'io.spring.dependency-management' version '1.0.11.RELEASE'
+	id 'java'
+}
+
+group = 'com.example'
+version = '0.0.1-SNAPSHOT'
+sourceCompatibility = '1.8'
+
+repositories {
+	mavenCentral()
+}
+
+dependencies {
+	implementation 'org.springframework.boot:spring-boot-starter'
+	testImplementation 'org.springframework.boot:spring-boot-starter-test'
+	compile "com.amazonaws:aws-java-sdk-s3:1.11.699"
+	compile('org.springframework.boot:spring-boot-starter-web')
+	compile "com.twitter:parquet-column:1.6.0"
+	compile "com.twitter:parquet-hadoop:1.6.0"
+	compile "org.apache.hadoop:hadoop-common:2.4.0"
+//	implementation group: 'org.apache.parquet', name: 'parquet-hadoop', version: '1.9.0'
+	//implementation group: 'org.apache.parquet', name: 'parquet-hadoop', version: '1.8.1'
+
+
+}
+configurations.all {
+	exclude module: 'slf4j-log4j12'
+	exclude group: 'javax.servlet'
+
+}
+test {
+	useJUnitPlatform()
+}
