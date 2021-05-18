@@ -148,8 +148,7 @@ public class AmazonS3Service {
         standard.withCredentials(
                 new AWSStaticCredentialsProvider(
                         new BasicAWSCredentials(
-                                "",
-                                "")));
+                                "", "")));
         standard.withRegion("ap-southeast-2");
         return standard.build();
     }
